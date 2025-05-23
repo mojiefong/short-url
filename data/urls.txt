@@ -1,0 +1,3 @@
+bd,https://baidu.com
+gh,https://github.com
+gg,https://google.com

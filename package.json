@@ -8,11 +8,12 @@
   "license": "MIT",
   "keywords": [
     "short-url",
+    "short-link",
     "url",
-    "short",
-    "short-link"
+    "short"
   ],
   "scripts": {
+    "dev": "pnpm node --experimental-strip-types --no-warnings --env-file=.env --watch ./src/main.ts",
     "release": "bumpp --commit --push --tag --no-verify",
     "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit",
@@ -31,6 +32,6 @@
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --fix",
-    "*.ts": "tsc --noEmit"
+    "*.ts": "sh -c 'tsc --noEmit'"
   }
 }

@@ -8,7 +8,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "allowImportingTsExtensions": true,
     "strict": true,
+    "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true
