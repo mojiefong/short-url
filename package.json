@@ -1,0 +1,36 @@
+{
+  "name": "short-url",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.11.0",
+  "description": "short url server",
+  "author": "Mojie",
+  "license": "MIT",
+  "keywords": [
+    "short-url",
+    "url",
+    "short",
+    "short-link"
+  ],
+  "scripts": {
+    "release": "bumpp --commit --push --tag --no-verify",
+    "lint": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.13.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@types/node": "^22.15.21",
+    "bumpp": "^10.1.1",
+    "eslint": "^9.27.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
+    "typescript": "^5.8.3"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix",
+    "*.ts": "tsc --noEmit"
+  }
+}
