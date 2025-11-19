@@ -13,7 +13,7 @@
     "short"
   ],
   "scripts": {
-    "dev": "pnpm node --experimental-strip-types --no-warnings --env-file=.env --watch ./src/main.ts",
+    "dev": "pnpm node --experimental-strip-types --no-warnings --watch ./src/main.ts",
     "release": "bumpp --commit --push --tag --no-verify",
     "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit",
