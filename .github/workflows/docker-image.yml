@@ -1,0 +1,34 @@
+name: Docker Image CI
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Build and push Docker image
+        env:
+          aliyun_username: ${{ secrets.ALIYUN_USERNAME }}
+          aliyun_password: ${{ secrets.ALIYUN_PASSWORD }}
+        run: |
+          echo git tag version: ${GITHUB_REF:10}
+          sudo docker login --username=${aliyun_username} registry.cn-chengdu.aliyuncs.com --password=${aliyun_password}
+
+          sudo docker build -t short-url:${GITHUB_REF:10} .
+
+          sudo docker tag short-url:${GITHUB_REF:10} registry.cn-chengdu.aliyuncs.com/mojiee/short-url:${GITHUB_REF:10}
+          sudo docker tag short-url:${GITHUB_REF:10} registry.cn-chengdu.aliyuncs.com/mojiee/short-url:latest
+
+          sudo docker push registry.cn-chengdu.aliyuncs.com/mojiee/short-url:${GITHUB_REF:10}
+          sudo docker push registry.cn-chengdu.aliyuncs.com/mojiee/short-url:latest
+
+      - run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
