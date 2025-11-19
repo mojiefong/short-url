@@ -15,9 +15,8 @@ const pkgPath = join(process.cwd(), 'package.json')
 const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'))
 
 function bootstrap() {
-  const urlMap = loadUrls()
-  const server = createAppServer(urlMap)
-
+  loadUrls()
+  const server = createAppServer()
   watchUrls()
 
   server.listen(PORT, () => {

@@ -4,37 +4,41 @@
  */
 
 import { readFileSync, watch } from 'node:fs'
+import { join } from 'node:path'
+import process from 'node:process'
 
-const URLS_FILE = new URL('../../data/urls.txt', import.meta.url).pathname
+const URLS_FILE = join(process.cwd(), 'data', 'urls.txt')
 
 export interface UrlMap {
   [short: string]: string
 }
 
+export const urlMap: { [key: string]: string } = {}
+
 export function loadUrls() {
   try {
     const data = readFileSync(URLS_FILE, 'utf8')
-    const newMap: UrlMap = {}
+
+    Object.keys(urlMap).forEach(k => delete urlMap[k])
+
     data.split('\n').forEach((line) => {
       const [short, long] = line.trim().split(',')
       if (short && long) {
-        newMap[short] = long
+        urlMap[short] = long
       }
     })
     log('配置已更新')
-    return newMap
   } catch (err) {
     console.error('配置文件加载失败：', err)
-    return {}
   }
 }
 
 export function watchUrls() {
-  let debounceTimer: NodeJS.Timeout
-  watch(URLS_FILE, (event) => {
+  let timer: NodeJS.Timeout
+  watch(URLS_FILE, { persistent: true }, (event) => {
     if (event === 'change') {
-      clearTimeout(debounceTimer)
-      debounceTimer = setTimeout(() => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
         loadUrls()
       }, 100)
     }
