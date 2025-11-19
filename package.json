@@ -2,7 +2,7 @@
   "name": "short-url",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.22.0",
   "description": "short url server",
   "author": "Mojie",
   "license": "MIT",
@@ -20,15 +20,15 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.13.2",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@types/node": "^22.15.21",
-    "bumpp": "^10.1.1",
-    "eslint": "^9.27.0",
+    "@antfu/eslint-config": "^6.2.0",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@types/node": "^24.10.1",
+    "bumpp": "^10.3.1",
+    "eslint": "^9.39.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.0.0",
-    "typescript": "^5.8.3"
+    "lint-staged": "^16.2.6",
+    "typescript": "^5.9.3"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --fix",
